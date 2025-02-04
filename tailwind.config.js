@@ -11,19 +11,21 @@ module.exports = {
     extend: {
       animation: {
         'blood-drip': 'blood-drip 5s infinite',
-      },
-      keyframes: {
-        'blood-drip': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(100%)' },
-        }
-      },
-      animation: {
+        'blood-pulse': 'blood-pulse 2s infinite',
         'pulse': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         glitch: 'glitch 1s linear infinite',
         pulse1: 'pulse 5s infinite',
       },
       keyframes: {
+        'blood-drip': {
+          '0%': { transform: 'translateY(-100%)', opacity: 0 },
+          '50%': { transform: 'translateY(100%)', opacity: 1 },
+          '100%': { transform: 'translateY(200%)', opacity: 0 },
+        },
+        'blood-pulse': {
+          '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+          '50%': { opacity: 0.5, transform: 'scale(1.05)' },
+        },
         pulse: {
           '0%, 100%': { opacity: 1 },
           '50%': { opacity: 0.5 },
