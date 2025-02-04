@@ -14,7 +14,9 @@ export default async function RootLayout({ children }) {
       <body className={inter.className}>
 
         <Header />
-        {children}
+        <main className="pt-28">
+          {children}
+        </main>
 
         <ToastContainer draggable theme="dark" />
         <div className="mt-28">
