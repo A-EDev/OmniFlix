@@ -78,72 +78,28 @@ const Trending = ({ data }) => {
         />
       </div>
 
-      {/* Enhanced Grid Layout with Smaller Cards */}
+      {/* Updated Grid Layout */}
       <AnimatePresence mode="wait">
         <motion.div 
           key={activeCategory}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4"
+          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 
+            gap-3 sm:gap-4 md:gap-5"
         >
           {filteredResults.map((item, index) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-              className="relative group"
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
+              transition={{ 
+                delay: index * 0.05,
+                duration: 0.3,
+                ease: "easeOut"
+              }}
             >
-              {/* Optimized Card Wrapper */}
-              <div className="relative rounded-lg overflow-hidden
-                transform transition-all duration-300 
-                hover:scale-[1.02] hover:shadow-xl hover:shadow-[#8B0000]/20
-                hover:z-10"
-              >
-                <TrendingCard info={item} />
-
-                {/* Enhanced Hover Overlay */}
-                <motion.div
-                  initial={false}
-                  animate={{
-                    opacity: hoveredIndex === index ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute inset-0 bg-gradient-to-t 
-                  from-black/90 via-black/50 to-transparent
-                  flex flex-col justify-end p-3
-                  transform translate-y-0"
-                >
-                  {/* Rank Badge */}
-                  <div className="absolute top-2 right-2 bg-[#8B0000]/80 
-                    backdrop-blur-sm px-2 py-1 rounded-md text-sm font-medium
-                    text-white shadow-lg shadow-[#8B0000]/20 border border-[#8B0000]/50"
-                  >
-                    #{index + 1}
-                  </div>
-
-                  {/* Info Container */}
-                  <div className="space-y-1">
-                    <div className="text-xs font-medium text-gray-300 uppercase">
-                      {item.media_type}
-                    </div>
-                    <div className="text-sm font-bold text-white line-clamp-2">
-                      {item.title || item.name}
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Blood Corner Effect */}
-                <div className="absolute top-0 right-0 w-12 h-12">
-                  <div className="absolute top-0 right-0 w-full h-full
-                    bg-gradient-to-bl from-[#8B0000]/30 to-transparent
-                    transform rotate-45 translate-x-6 -translate-y-6"
-                  />
-                </div>
-              </div>
+              <TrendingCard info={item} />
             </motion.div>
           ))}
         </motion.div>
