@@ -16,7 +16,7 @@ const Trending = ({ data }) => {
   ];
 
   const filteredResults = activeCategory === 'all' 
-    ? results.slice(0, 16)
+    ? results.slice(0, 20)
     : results.filter(item => item.media_type === activeCategory).slice(0, 16);
 
   return (
