@@ -13,99 +13,109 @@ const Home = async () => {
   ]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#0d0d0d] text-white">
-      {/* Blood Drip Background Effects */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        {[...Array(5)].map((_, index) => (
-          <div 
-            key={index}
-            className="absolute w-[2px] bg-gradient-to-b from-[#8B0000] to-transparent opacity-30 animate-blood-drip"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Pulsating Background Overlay */}
-      <div 
-        className="fixed inset-0 bg-gradient-to-br from-[#1a0000] via-[#0d0d0d] to-[#1a0000] 
-        opacity-50 animate-pulse pointer-events-none z-0"
-      />
-
-      {/* Subtle Background Pattern */}
-      <div 
-        className="fixed inset-0 opacity-[0.05] pointer-events-none z-0 
-        bg-[radial-gradient(#8B0000_1px,transparent_1px)] 
-        [background-size:16px_16px]"
-      />
-
-      {/* Main Content Container */}
-      <div className="relative z-4 w-full flex flex-col items-center main-responsive">
-        {/* Herosection with Enhanced Styling */}
-        <div className="relative w-full">
-          <Herosection data={trendingdata} />
-          <div className="absolute inset-0 bg-gradient-to-b 
-  from-transparent 
-  via-[#8B0000]/40 
-  via-[#420000]/60 
-  to-[#0d0d0d] 
-  pointer-events-none"
-/>   
-</div>
-
-        {/* Content Sections */}
-        <div className="max-w-[96rem] w-full z-10 space-y-16 py-16">
-          
-          <div className="my-12">
-            <Trending 
-            data={trendingdata} 
-            className="bg-[#8B0000]/10 backdrop-blur-sm rounded-2xl p-6 
-            border border-[#8B0000]/20 
-            transition-all duration-300 
-            hover:border-[#8B0000]/50 
-            hover:shadow-lg 
-            my-12
-            hover:shadow-[#8B0000]/30"
-          /> </div>
-          
-          <WatchHistory 
-            className="bg-[#8B0000]/10 backdrop-blur-sm rounded-2xl p-6 
-            border border-[#8B0000]/20 
-            transition-all duration-300 
-            hover:border-[#8B0000]/50 
-            hover:shadow-lg 
-            hover:shadow-[#8B0000]/30"
-          />
-          
-          <Popular 
-            className="bg-[#8B0000]/10 backdrop-blur-sm rounded-2xl p-6 
-            border border-[#8B0000]/20 
-            transition-all duration-300 
-            hover:border-[#8B0000]/50 
-            hover:shadow-lg 
-            hover:shadow-[#8B0000]/30"
-          />
-          
-          <TopRated 
-            data={top_rateddata} 
-            className="bg-[#8B0000]/10 backdrop-blur-sm rounded-2xl p-6 
-            border border-[#8B0000]/20 
-            transition-all duration-300 
-            hover:border-[#8B0000]/50 
-            hover:shadow-lg 
-            hover:shadow-[#8B0000]/30"
-          />
+    <main className="relative min-h-screen bg-[#0d0d0d] text-white overflow-x-hidden">
+      {/* Background Effects Container */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Blood Drip Effects */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(5)].map((_, index) => (
+            <div 
+              key={index}
+              className="absolute w-[2px] h-[20vh] bg-gradient-to-b from-[#8B0000] to-transparent opacity-30 animate-blood-drip"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`
+              }}
+            />
+          ))}
         </div>
+
+        {/* Pulsating Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a0000] via-[#0d0d0d] to-[#1a0000] opacity-50 animate-pulse" />
+
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#8B0000_1px,transparent_1px)] [background-size:16px_16px]" />
       </div>
 
-      {/* Accent Lines */}
-      <div className="fixed top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#8B0000] to-transparent opacity-50"></div>
-      <div className="fixed bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#420000] to-transparent opacity-50"></div>
+      {/* Content Container */}
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <section className="relative w-full mb-24">
+          <Herosection data={trendingdata} />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0d0d0d] to-transparent pointer-events-none" />
+        </section>
 
-    </div>
-  )
-}
+        {/* Main Content Sections */}
+        <div className="relative max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Sections Stack */}
+          <div className="relative flex flex-col gap-32">
+            {/* Trending Section */}
+            <section className="w-full">
+              <div className="relative z-10 bg-[#0d0d0d] rounded-2xl">
+                <Trending 
+                  data={trendingdata} 
+                  className="bg-[#8B0000]/5 backdrop-blur-sm rounded-2xl p-6 
+                  border border-[#8B0000]/20 
+                  transition-all duration-300 
+                  hover:border-[#8B0000]/50 
+                  hover:shadow-lg 
+                  hover:shadow-[#8B0000]/30"
+                />
+              </div>
+            </section>
 
-export default Home
+            {/* Popular Section */}
+            <section className="w-full">
+              <div className="relative z-10 bg-[#0d0d0d] rounded-2xl">
+                <Popular 
+                  className="bg-[#8B0000]/5 backdrop-blur-sm rounded-2xl p-6 
+                  border border-[#8B0000]/20 
+                  transition-all duration-300 
+                  hover:border-[#8B0000]/50 
+                  hover:shadow-lg 
+                  hover:shadow-[#8B0000]/30"
+                />
+              </div>
+            </section>
+
+            {/* Top Rated Section */}
+            <section className="w-full">
+              <div className="relative z-10 bg-[#0d0d0d] rounded-2xl">
+                <TopRated 
+                  data={top_rateddata} 
+                  className="bg-[#8B0000]/5 backdrop-blur-sm rounded-2xl p-6 
+                  border border-[#8B0000]/20 
+                  transition-all duration-300 
+                  hover:border-[#8B0000]/50 
+                  hover:shadow-lg 
+                  hover:shadow-[#8B0000]/30"
+                />
+              </div>
+            </section>
+          </div>
+
+          {/* Section Separators */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute left-0 right-0 h-px bg-gradient-to-r 
+                from-transparent via-[#8B0000]/20 to-transparent"
+                style={{ top: `${(i + 1) * 33.33}%` }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Spacing */}
+        <div className="h-24" />
+
+        {/* Bottom Accent Line */}
+        <div className="fixed bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r 
+        from-transparent via-[#8B0000]/30 to-transparent" />
+      </div>
+    </main>
+  );
+};
+
+export default Home;
