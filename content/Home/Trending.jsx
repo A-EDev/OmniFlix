@@ -23,7 +23,7 @@ const Trending = ({ data }) => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="relative py-8 px-4 sm:px-6 lg:px-8"
+      className="relative py-6 px-4 sm:px-6 lg:px-8"
     >
       {/* Header Section */}
       <div className="mb-8">
@@ -78,59 +78,69 @@ const Trending = ({ data }) => {
         />
       </div>
 
-      {/* Enhanced Grid Layout */}
+      {/* Enhanced Grid Layout with Smaller Cards */}
       <AnimatePresence mode="wait">
         <motion.div 
           key={activeCategory}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4"
         >
           {filteredResults.map((item, index) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.05 }}
               className="relative group"
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
             >
-              {/* Card Wrapper with Enhanced Hover Effects */}
-              <div className="relative rounded-xl overflow-hidden
+              {/* Optimized Card Wrapper */}
+              <div className="relative rounded-lg overflow-hidden
                 transform transition-all duration-300 
-                hover:scale-[1.02] hover:shadow-xl hover:shadow-[#8B0000]/20"
+                hover:scale-[1.02] hover:shadow-xl hover:shadow-[#8B0000]/20
+                hover:z-10"
               >
                 <TrendingCard info={item} />
 
-                {/* Hover Overlay with Rank */}
+                {/* Enhanced Hover Overlay */}
                 <motion.div
                   initial={false}
                   animate={{
                     opacity: hoveredIndex === index ? 1 : 0,
-                    y: hoveredIndex === index ? 0 : 10
                   }}
+                  transition={{ duration: 0.2 }}
                   className="absolute inset-0 bg-gradient-to-t 
-                  from-black/80 via-transparent to-transparent
-                  flex items-end justify-start p-4"
+                  from-black/90 via-black/50 to-transparent
+                  flex flex-col justify-end p-3
+                  transform translate-y-0"
                 >
-                  <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold text-white">
-                      #{index + 1}
+                  {/* Rank Badge */}
+                  <div className="absolute top-2 right-2 bg-[#8B0000]/80 
+                    backdrop-blur-sm px-2 py-1 rounded-md text-sm font-medium
+                    text-white shadow-lg shadow-[#8B0000]/20 border border-[#8B0000]/50"
+                  >
+                    #{index + 1}
+                  </div>
+
+                  {/* Info Container */}
+                  <div className="space-y-1">
+                    <div className="text-xs font-medium text-gray-300 uppercase">
+                      {item.media_type}
                     </div>
-                    <div className="h-6 w-px bg-[#8B0000]/50" />
-                    <div className="text-sm text-gray-300">
-                      {item.media_type.toUpperCase()}
+                    <div className="text-sm font-bold text-white line-clamp-2">
+                      {item.title || item.name}
                     </div>
                   </div>
                 </motion.div>
 
                 {/* Blood Corner Effect */}
-                <div className="absolute top-0 right-0 w-16 h-16">
+                <div className="absolute top-0 right-0 w-12 h-12">
                   <div className="absolute top-0 right-0 w-full h-full
                     bg-gradient-to-bl from-[#8B0000]/30 to-transparent
-                    transform rotate-45 translate-x-8 -translate-y-8"
+                    transform rotate-45 translate-x-6 -translate-y-6"
                   />
                 </div>
               </div>
