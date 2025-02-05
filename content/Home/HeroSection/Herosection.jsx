@@ -102,7 +102,8 @@ const HeroSection = ({ data }) => {
       <div className="relative h-full w-full flex flex-col lg:flex-row">
         {/* Left Content Section */}
         <motion.div 
-          className="relative z-20 w-full lg:w-[50%] h-full flex items-center px-8 lg:px-16 transition-all duration-300"
+          className="relative z-20 w-full lg:w-[50%] h-full flex items-center px-4 sm:px-6 lg:px-12 
+          pt-[15vh] lg:pt-0 transition-all duration-300"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -115,25 +116,26 @@ const HeroSection = ({ data }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.5 }}
-                className="space-y-8"
+                className="space-y-4 sm:space-y-6 lg:space-y-8"
               >
                 {/* Movie Title */}
                 <motion.h1 
-                  className="text-6xl lg:text-8xl font-bold text-transparent bg-clip-text 
-                  bg-gradient-to-r from-white via-white/80 to-white/50 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold 
+                  text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 
+                  to-white/50 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] leading-tight"
                 >
                   {movies[activeIndex]?.title}
                 </motion.h1>
 
                 {/* Enhanced Movie Info Grid */}
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
                   {/* Rating Card */}
-                  <motion.div className="flex flex-col items-center justify-center p-4 rounded-2xl
+                  <motion.div className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl sm:rounded-2xl
                     backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 
                     transition-all duration-300 hover:scale-105 hover:border-white/20">
-                    <IoStar className="text-2xl text-[#8B0000]" />
-                    <span className="text-xl font-bold">{movies[activeIndex]?.vote_average?.toFixed(1)}</span>
-                    <span className="text-xs uppercase tracking-wider">Rating</span>
+                    <IoStar className="text-xl sm:text-2xl text-[#8B0000]" />
+                    <span className="text-lg sm:text-xl font-bold">{movies[activeIndex]?.vote_average?.toFixed(1)}</span>
+                    <span className="text-[10px] sm:text-xs uppercase tracking-wider">Rating</span>
                   </motion.div>
                   
                   {/* Similar info cards for Year, Duration, Language */}
@@ -142,25 +144,25 @@ const HeroSection = ({ data }) => {
 
                 {/* Movie Description */}
                 <motion.p 
-                  className="text-lg text-white/80 line-clamp-4 
-                  backdrop-blur-sm bg-black/20 p-6 rounded-2xl border border-white/10"
+                  className="text-sm sm:text-base lg:text-lg text-white/80 line-clamp-3 sm:line-clamp-4
+                  backdrop-blur-sm bg-black/20 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10"
                 >
                   {movies[activeIndex]?.overview}
                 </motion.p>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4">
                   <Link href={`/watch/${movies[activeIndex]?.id}?media_type=movie`}>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-3 px-8 py-4 rounded-2xl
+                      className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl
                         bg-gradient-to-r from-[#8B0000] to-[#420000]
-                        text-white font-medium text-lg hover:shadow-lg hover:shadow-[#8B0000]/30
+                        text-white font-medium text-base sm:text-lg hover:shadow-lg hover:shadow-[#8B0000]/30
                         transition-all duration-300 border border-[#8B0000]/50
                         hover:border-[#8B0000] relative overflow-hidden"
                     >
-                      <FaPlay className="text-xl" />
+                      <FaPlay className="text-sm sm:text-xl" />
                       <span>Watch Now</span>
                     </motion.button>
                   </Link>
@@ -206,9 +208,9 @@ const HeroSection = ({ data }) => {
       </div>
 
       {/* Navigation Controls */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30
-        flex items-center gap-4 px-6 py-4 backdrop-blur-md bg-black/30 
-        rounded-2xl border border-white/10">
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-30
+        flex items-center gap-2 sm:gap-4 p-2 sm:px-6 sm:py-4 backdrop-blur-md bg-black/30 
+        rounded-xl sm:rounded-2xl border border-white/10">
         {movies.map((movie, index) => (
           <motion.button
             key={index}
@@ -217,15 +219,15 @@ const HeroSection = ({ data }) => {
               ${index === activeIndex ? 
                 'border-[#8B0000] shadow-lg shadow-[#8B0000]/30' : 
                 'border-transparent'}`}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             <Image
               src={`https://image.tmdb.org/t/p/w200${movie.backdrop_path}`}
               alt={movie.title}
-              width={100}
-              height={60}
-              className="rounded-lg"
+              width={60}
+              height={35}
+              className="rounded-lg sm:w-[100px] sm:h-[60px]"
             />
           </motion.button>
         ))}
