@@ -72,7 +72,7 @@ const Header = () => {
 
             {/* Right Section */}
             <div className="flex items-center">
-              <div className="w-[180px] sm:w-[280px]">
+              <div className="w-[180px] sm:w-[280px] z-50">
                 <Search />
               </div>
             </div>
