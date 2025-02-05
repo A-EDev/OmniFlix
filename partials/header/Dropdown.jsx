@@ -10,7 +10,7 @@ const Dropdown = ({ data, checkBoxItem, setCheckBoxItem }) => {
   const [isOpened, setIsOpened] = useState(false)
 
   return (
-    <div className="relative w-full group">
+    <div className="relative z-50 w-full group">
       {/* Dropdown Trigger */}
       <div
         className="bg-[#0d0d0d] 
@@ -61,7 +61,7 @@ const Dropdown = ({ data, checkBoxItem, setCheckBoxItem }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="absolute z-20 w-full mt-2 
+            className="absolute z-50 w-full mt-2 
             bg-[#0d0d0d] 
             border border-[#8B0000]/30 
             rounded-xl 
