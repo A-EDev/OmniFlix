@@ -84,7 +84,7 @@ const Herosection = ({ data }) => {
   };
 
   return (
-    <div className="relative h-[calc(100vh-80px)] w-full overflow-hidden bg-[#0d0d0d]">
+    <div className="relative h-[calc(100vh-80px)] z-1 w-full overflow-hidden bg-[#0d0d0d]">
       {/* Floating Blood Bubbles */}
       {[...Array(15)].map((_, i) => (
         <BloodBubble key={i} delay={i * 0.3} />
