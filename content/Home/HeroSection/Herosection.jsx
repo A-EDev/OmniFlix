@@ -116,11 +116,11 @@ const HeroSection = ({ data }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.5 }}
-                className="space-y-4 sm:space-y-6 lg:space-y-8"
+                className="space-y-3 sm:space-y-4 lg:space-y-6"
               >
                 {/* Movie Title */}
                 <motion.h1 
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold 
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold 
                   text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 
                   to-white/50 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] leading-tight"
                 >
@@ -128,24 +128,79 @@ const HeroSection = ({ data }) => {
                 </motion.h1>
 
                 {/* Enhanced Movie Info Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
-                  {/* Rating Card */}
-                  <motion.div className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl sm:rounded-2xl
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-2">
+                  {/* Rating Badge */}
+                  <motion.div className="flex flex-col items-center justify-center p-2 rounded-lg
                     backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 
                     transition-all duration-300 hover:scale-105 hover:border-white/20">
-                    <IoStar className="text-xl sm:text-2xl text-[#8B0000]" />
-                    <span className="text-lg sm:text-xl font-bold">{movies[activeIndex]?.vote_average?.toFixed(1)}</span>
-                    <span className="text-[10px] sm:text-xs uppercase tracking-wider">Rating</span>
+                    <IoStar className="text-base sm:text-lg text-[#8B0000]" />
+                    <span className="text-sm sm:text-base font-bold">{movies[activeIndex]?.vote_average?.toFixed(1)}</span>
+                    <span className="text-[8px] sm:text-[10px] uppercase tracking-wider">Rating</span>
                   </motion.div>
-                  
-                  {/* Similar info cards for Year, Duration, Language */}
-                  {/* ...existing info cards code... */}
+
+                  {/* Year Badge */}
+                  <motion.div className="flex flex-col items-center justify-center p-2 rounded-lg
+                    backdrop-blur-md bg-white/5 border border-white/10">
+                    <span className="text-sm sm:text-base font-bold">
+                      {new Date(movies[activeIndex]?.release_date).getFullYear()}
+                    </span>
+                    <span className="text-[8px] sm:text-[10px] uppercase tracking-wider">Year</span>
+                  </motion.div>
+
+                  {/* Runtime Badge */}
+                  <motion.div className="flex flex-col items-center justify-center p-2 rounded-lg
+                    backdrop-blur-md bg-white/5 border border-white/10">
+                    <span className="text-sm sm:text-base font-bold">{formatRuntime(movieDetails?.runtime)}</span>
+                    <span className="text-[8px] sm:text-[10px] uppercase tracking-wider">Duration</span>
+                  </motion.div>
+
+                  {/* Language Badge */}
+                  <motion.div className="flex flex-col items-center justify-center p-2 rounded-lg
+                    backdrop-blur-md bg-white/5 border border-white/10">
+                    <span className="text-sm sm:text-base font-bold">
+                      {movieDetails?.original_language?.toUpperCase()}
+                    </span>
+                    <span className="text-[8px] sm:text-[10px] uppercase tracking-wider">Language</span>
+                  </motion.div>
+
+                  {/* Release Date Badge */}
+                  <motion.div className="flex flex-col items-center justify-center p-2 rounded-lg
+                    backdrop-blur-md bg-white/5 border border-white/10">
+                    <span className="text-sm sm:text-base font-bold">
+                      {new Date(movies[activeIndex]?.release_date).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric'
+                      })}
+                    </span>
+                    <span className="text-[8px] sm:text-[10px] uppercase tracking-wider">Release</span>
+                  </motion.div>
+
+                  {/* Status Badge */}
+                  <motion.div className="flex flex-col items-center justify-center p-2 rounded-lg
+                    backdrop-blur-md bg-white/5 border border-white/10">
+                    <span className="text-sm sm:text-base font-bold text-green-400">
+                      {movieDetails?.status || 'Released'}
+                    </span>
+                    <span className="text-[8px] sm:text-[10px] uppercase tracking-wider">Status</span>
+                  </motion.div>
+                </div>
+
+                {/* Genres */}
+                <div className="flex flex-wrap gap-1.5">
+                  {movieDetails?.genres?.map((genre) => (
+                    <span key={genre.id}
+                      className="px-2 py-1 text-[10px] sm:text-xs rounded-md
+                      bg-[#8B0000]/20 border border-[#8B0000]/30 text-white/90"
+                    >
+                      {genre.name}
+                    </span>
+                  ))}
                 </div>
 
                 {/* Movie Description */}
                 <motion.p 
-                  className="text-sm sm:text-base lg:text-lg text-white/80 line-clamp-3 sm:line-clamp-4
-                  backdrop-blur-sm bg-black/20 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10"
+                  className="text-xs sm:text-sm text-white/80 line-clamp-2 sm:line-clamp-3
+                  backdrop-blur-sm bg-black/20 p-3 sm:p-4 rounded-xl border border-white/10"
                 >
                   {movies[activeIndex]?.overview}
                 </motion.p>
