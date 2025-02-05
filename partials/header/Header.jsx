@@ -11,11 +11,11 @@ const Header = () => {
     <motion.div 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="w-full flex justify-center fixed top-0 left-0 right-0 z-50 px-6 pt-6"
+      className="w-full flex justify-center fixed top-0 left-0 right-0 z-[100] px-4 sm:px-6 pt-4 sm:pt-6"
     >
       <div className="relative w-full max-w-[90rem]">
         {/* Blood Drip Effect */}
-        <div className="absolute -top-6 left-0 right-0 h-6 overflow-hidden pointer-events-none">
+        <div className="absolute -top-4 sm:-top-6 left-0 right-0 h-6 overflow-hidden pointer-events-none">
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
@@ -32,7 +32,7 @@ const Header = () => {
         {/* Main Header Container */}
         <motion.div 
           layout
-          className="w-full rounded-2xl bg-[#0d0d0d]/90 backdrop-blur-xl
+          className="w-full rounded-xl sm:rounded-2xl bg-[#0d0d0d]/95 backdrop-blur-xl
           border border-[#8B0000]/20
           shadow-lg shadow-black/20
           overflow-hidden
@@ -40,15 +40,15 @@ const Header = () => {
           hover:border-[#8B0000]/30
           hover:shadow-[#8B0000]/20"
         >
-          <div className="flex items-center justify-between px-6 py-4">
+          <div className="flex items-center justify-between px-3 sm:px-6 py-3 sm:py-4 gap-3 sm:gap-6">
             {/* Left Section */}
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-3 sm:gap-8">
               <Responsive />
 
               {/* Logo */}
               <Link href="/" className="group relative">
                 <motion.span 
-                  className={`${nightTokyo.className} text-2xl font-bold
+                  className={`${nightTokyo.className} text-xl sm:text-2xl font-bold
                   text-transparent bg-clip-text bg-gradient-to-r 
                   from-[#8B0000] to-[#FF4500]
                   drop-shadow-[0_2px_4px_rgba(139,0,0,0.3)]
@@ -56,14 +56,13 @@ const Header = () => {
                   group-hover:from-[#FF4500] group-hover:to-[#8B0000]`}
                 >
                   OmniFlix
+                  <span className="absolute -top-1 -right-6 sm:-right-8 text-[10px] sm:text-xs 
+                    bg-[#8B0000] text-white px-1.5 sm:px-2 py-0.5 rounded-full
+                    shadow-lg shadow-[#8B0000]/20 animate-pulse"
+                  >
+                    Beta
+                  </span>
                 </motion.span>
-                <span className="absolute -top-1 -right-8 text-xs bg-[#8B0000]
-                  text-white px-2 py-0.5 rounded-full
-                  shadow-lg shadow-[#8B0000]/20
-                  animate-pulse"
-                >
-                  Beta
-                </span>
               </Link>
 
               {/* Navigation Links */}
@@ -73,8 +72,8 @@ const Header = () => {
             </div>
 
             {/* Right Section */}
-            <div className="flex items-center gap-6">
-              <div className="w-[280px]">
+            <div className="flex items-center">
+              <div className="w-[180px] sm:w-[280px]">
                 <Search />
               </div>
             </div>
