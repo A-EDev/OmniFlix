@@ -41,7 +41,7 @@ const Header = () => {
         >
           <div className="flex items-center justify-between px-3 sm:px-6 py-3 sm:py-4 gap-3 sm:gap-6">
             {/* Left Section */}
-            <div className="flex items-center gap-3 sm:gap-8">
+            <div className="flex items-center z-20 gap-3 sm:gap-8">
               <Responsive />
 
               {/* Logo */}
