@@ -11,11 +11,11 @@ const Header = () => {
     <motion.div 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="w-full flex justify-center fixed top-0 left-0 right-0 z-[100] px-4 sm:px-6 pt-4 sm:pt-6"
+      className="w-full flex justify-center fixed top-0 left-0 right-0 z-10 px-4 sm:px-6 pt-4 sm:pt-6"
     >
       <div className="relative w-full max-w-[90rem]">
         {/* Blood Drip Effect */}
-        <div className="absolute -top-4 sm:-top-6 left-0 right-0 h-6 overflow-hidden pointer-events-none">
+        <div className="absolute -top-4 sm:-top-6 left-0 right-0 h-6  pointer-events-none">
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
@@ -35,7 +35,6 @@ const Header = () => {
           className="w-full rounded-xl sm:rounded-2xl bg-[#0d0d0d]/95 backdrop-blur-xl
           border border-[#8B0000]/20
           shadow-lg shadow-black/20
-          overflow-hidden
           transition-all duration-300
           hover:border-[#8B0000]/30
           hover:shadow-[#8B0000]/20"
