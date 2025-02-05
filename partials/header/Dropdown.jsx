@@ -79,7 +79,7 @@ const Dropdown = ({ data, checkBoxItem, setCheckBoxItem }) => {
                   delay: index * 0.05 
                 }}
                 className={clsx(
-                  "px-4 py-3 cursor-pointer transition-all duration-300 text-[15px] font-['poppins']",
+                  "px-4 py-3 cursor-pointer transition-all duration-300 text-[15px] font-['poppins'] z-50",
                   {
                     "bg-[#8B0000]/20 text-[#FF4500]": (checkBoxItem === "" ? "All" : checkBoxItem) === item,
                     "hover:bg-[#8B0000]/10 text-white": true
