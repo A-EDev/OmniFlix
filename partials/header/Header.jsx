@@ -52,12 +52,12 @@ const Header = () => {
                   from-[#8B0000] to-[#FF4500]
                   drop-shadow-[0_2px_4px_rgba(139,0,0,0.3)]
                   transition-all duration-300
-                  group-hover:from-[#FF4500] group-hover:to-[#8B0000]`}
+                  group-hover:from-[#FF4500] group-hover:to-[#8B0000] mr-5`}
                 >
                   OmniFlix
-                  <span className="absolute -top-1 -right-6 sm:-right-8 text-[10px] sm:text-xs 
+                  <span className="absolute -top-5 -right-6 sm:-right-9 text-[10px] sm:text-xs 
                     bg-[#8B0000] text-white px-1.5 sm:px-2 py-0.5 rounded-full
-                    shadow-lg shadow-[#8B0000]/20 animate-pulse"
+                    shadow-lg shadow-[#8B0000]/20 animate-pulse p-2 z-10"
                   >
                     Beta
                   </span>
