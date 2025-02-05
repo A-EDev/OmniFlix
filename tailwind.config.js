@@ -30,8 +30,11 @@ module.exports = {
           '0%, 100%': { opacity: 1 },
           '50%': { opacity: 0.5 },
         }
-      }
-
+      },
+      screens: {
+        'xs': '475px',
+        // ...rest of your existing breakpoints
+      },
     },
   },
   plugins: [],

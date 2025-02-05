@@ -23,25 +23,32 @@ const Trending = ({ data }) => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="relative py-6 px-4 sm:px-6 lg:px-8"
+      className="relative py-4 sm:py-6 px-2 sm:px-6 lg:px-8"
     >
       {/* Header Section */}
-      <div className="mb-8">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-4 sm:mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start 
+          sm:items-center gap-3 sm:gap-4"
+        >
           {/* Title with Animation */}
           <motion.h1 
             initial={{ x: -20 }}
             animate={{ x: 0 }}
-            className="flex items-center gap-3 text-3xl sm:text-4xl font-bold"
+            className="flex items-center gap-2 sm:gap-3 
+            text-2xl sm:text-3xl lg:text-4xl font-bold"
           >
             <FaFire className="text-[#8B0000] animate-pulse" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+            <span className="text-transparent bg-clip-text 
+              bg-gradient-to-r from-white to-gray-400"
+            >
               Trending Now
             </span>
           </motion.h1>
 
           {/* Enhanced Category Selector */}
-          <div className="flex bg-[#1a0000] rounded-xl p-1.5 border border-[#8B0000]/20 shadow-inner shadow-[#8B0000]/5">
+          <div className="flex w-full sm:w-auto bg-[#1a0000] rounded-xl p-1.5 
+            border border-[#8B0000]/20 shadow-inner shadow-[#8B0000]/5"
+          >
             {categories.map((category) => (
               <motion.button
                 key={category.key}
@@ -85,8 +92,8 @@ const Trending = ({ data }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 
-            gap-3 sm:gap-4 md:gap-5"
+          className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 
+            gap-2 xs:gap-3 sm:gap-4"
         >
           {filteredResults.map((item, index) => (
             <motion.div

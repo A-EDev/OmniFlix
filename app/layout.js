@@ -14,12 +14,12 @@ export default async function RootLayout({ children }) {
       <body className={inter.className}>
 
         <Header />
-        <main className="pt-28">
+        <main className="pt-20 sm:pt-24 lg:pt-28">
           {children}
         </main>
 
         <ToastContainer draggable theme="dark" />
-        <div className="mt-28">
+        <div className="mt-16 sm:mt-20 lg:mt-28">
           <Footer />
         </div>
       </body>
