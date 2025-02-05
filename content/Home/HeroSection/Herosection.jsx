@@ -3,10 +3,9 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaPlay, FaInfoCircle, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
-import { IoStar, IoTime } from "react-icons/io5";
+import { FaPlay, FaInfoCircle } from "react-icons/fa";
+import { IoStar } from "react-icons/io5";
 import axios from 'axios';
-import styles from "./HeroSection.module.css";
 
 const ParticleEffect = () => {
   return (
@@ -41,6 +40,7 @@ const ParticleEffect = () => {
 
 const HeroSection = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);  // Add this line
   const [isHovered, setIsHovered] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [movieDetails, setMovieDetails] = useState({});
@@ -102,7 +102,7 @@ const HeroSection = ({ data }) => {
       <div className="relative h-full w-full flex flex-col lg:flex-row">
         {/* Left Content Section */}
         <motion.div 
-          className={`relative z-20 w-full lg:w-[50%] h-full flex items-center px-8 lg:px-16 ${styles.smoothTransform}`}
+          className="relative z-20 w-full lg:w-[50%] h-full flex items-center px-8 lg:px-16 transition-all duration-300"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -119,8 +119,8 @@ const HeroSection = ({ data }) => {
               >
                 {/* Movie Title */}
                 <motion.h1 
-                  className={`text-6xl lg:text-8xl font-bold text-transparent bg-clip-text 
-                  bg-gradient-to-r from-white via-white/80 to-white/50 ${styles.glowText}`}
+                  className="text-6xl lg:text-8xl font-bold text-transparent bg-clip-text 
+                  bg-gradient-to-r from-white via-white/80 to-white/50 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]"
                 >
                   {movies[activeIndex]?.title}
                 </motion.h1>
@@ -128,7 +128,9 @@ const HeroSection = ({ data }) => {
                 {/* Enhanced Movie Info Grid */}
                 <div className="grid grid-cols-4 gap-4">
                   {/* Rating Card */}
-                  <motion.div className={styles.infoCard}>
+                  <motion.div className="flex flex-col items-center justify-center p-4 rounded-2xl
+                    backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 
+                    transition-all duration-300 hover:scale-105 hover:border-white/20">
                     <IoStar className="text-2xl text-[#8B0000]" />
                     <span className="text-xl font-bold">{movies[activeIndex]?.vote_average?.toFixed(1)}</span>
                     <span className="text-xs uppercase tracking-wider">Rating</span>
@@ -152,7 +154,11 @@ const HeroSection = ({ data }) => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className={styles.watchButton}
+                      className="flex items-center gap-3 px-8 py-4 rounded-2xl
+                        bg-gradient-to-r from-[#8B0000] to-[#420000]
+                        text-white font-medium text-lg hover:shadow-lg hover:shadow-[#8B0000]/30
+                        transition-all duration-300 border border-[#8B0000]/50
+                        hover:border-[#8B0000] relative overflow-hidden"
                     >
                       <FaPlay className="text-xl" />
                       <span>Watch Now</span>
@@ -169,12 +175,12 @@ const HeroSection = ({ data }) => {
 
         {/* Right Content Section - Enhanced Video/Image Display */}
         <motion.div 
-          className={`absolute lg:relative inset-0 lg:w-[50%] h-full ${styles.smoothTransform}`}
+          className="absolute lg:relative inset-0 lg:w-[50%] h-full transition-transform duration-500"
           initial={{ opacity: 0, scale: 1.2 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <div className={`${styles.mediaContainer} ${styles.smoothImageBlending}`}>
+          <div className="relative h-full w-full transform hover:scale-105 transition-all duration-500">
             <AnimatePresence initial={false}>
               <motion.div
                 key={activeIndex}
@@ -191,7 +197,8 @@ const HeroSection = ({ data }) => {
                   priority
                   className="object-cover"
                 />
-                <div className={styles.gradientOverlay} />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent 
+                  via-[#0d0d0d]/50 to-[#0d0d0d] pointer-events-none" />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -199,12 +206,17 @@ const HeroSection = ({ data }) => {
       </div>
 
       {/* Navigation Controls */}
-      <div className={styles.navigation}>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30
+        flex items-center gap-4 px-6 py-4 backdrop-blur-md bg-black/30 
+        rounded-2xl border border-white/10">
         {movies.map((movie, index) => (
           <motion.button
             key={index}
             onClick={() => setActiveIndex(index)}
-            className={`${styles.navButton} ${index === activeIndex ? styles.navButtonActive : ''}`}
+            className={`relative overflow-hidden rounded-lg border-2 transition-all duration-300
+              ${index === activeIndex ? 
+                'border-[#8B0000] shadow-lg shadow-[#8B0000]/30' : 
+                'border-transparent'}`}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -220,9 +232,9 @@ const HeroSection = ({ data }) => {
       </div>
 
       {/* Progress Bar */}
-      <motion.div className={styles.progressBar}>
+      <motion.div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 overflow-hidden">
         <motion.div
-          className={styles.progressBarFill}
+          className="h-full bg-gradient-to-r from-[#8B0000] via-[#ff0000] to-[#8B0000]"
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
           transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
